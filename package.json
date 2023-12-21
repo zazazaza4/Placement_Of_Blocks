@@ -1,0 +1,10 @@
+{
+  "name": "reasonway-task",
+  "version": "1.0.0",
+  "type": "module",
+  "description": "Web application for efficient placement of blocks",
+  "main": "index.js",
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
