@@ -39,7 +39,7 @@ function renderBlocks(data, containerElement) {
 }
 
 async function main() {
-  const blocks = await loadJson('../inputs/blocks.json');
+  const blocks = await loadJson('inputs/blocks.json');
 
   const container = new Container(window.innerWidth, window.innerHeight);
   const containerElement = document.getElementById('container');
