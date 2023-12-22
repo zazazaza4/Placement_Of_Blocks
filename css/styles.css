@@ -16,6 +16,7 @@ body {
     color: white;
     font-weight: bold;
     font-size: 18px;
+    border: 1px solid black;
 }
 
 .fullness {
