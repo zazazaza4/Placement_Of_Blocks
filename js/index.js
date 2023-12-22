@@ -1,5 +1,3 @@
-import blocksData from '../inputs/blocks.json' assert { type: "json" };
-
 import { efficientPlacement } from './algorithms/efficientPlacement.js';
 import Render from './lib/render.js';
 
@@ -8,22 +6,24 @@ import Container from './components/container.js';
 
 import { getRandomColorBy2Values } from './utils/generateColor.js';
 import { debounce } from './utils/debounce.js';
+import { loadJson } from './utils/jsonLoader.js';
 
-function main(blocks) {
-  const container = new Container(window.innerWidth, window.innerHeight);
+const DEBOUNCE_DELAY = 150;
 
-  const containerElement = document.getElementById('container');
-  containerElement.innerHTML = '';
-
-  const data = efficientPlacement(blocks, container);
-
-  if (blocks.length !== data.blockCoordinates.length) {
-    alert('У розміщенні відсутні деякі блоки.')
+async function handleResize() {
+  try {
+    await main();
+  } catch (error) {
+    console.error('Error handling resize:', error);
   }
+}
+
+function renderBlocks(data, containerElement) {
+  containerElement.innerHTML = '';
 
   data.blockCoordinates.forEach((coord) => {
     const width = coord.right - coord.left;
-    const height = coord.bottom - coord.top
+    const height = coord.bottom - coord.top;
 
     const block = new Block(
       width,
@@ -36,14 +36,24 @@ function main(blocks) {
     Render.renderBlock(block, containerElement);
   });
 
+}
+
+async function main() {
+  const blocks = await loadJson('../inputs/blocks.json');
+
+  const container = new Container(window.innerWidth, window.innerHeight);
+  const containerElement = document.getElementById('container');
+
+  const data = efficientPlacement(blocks, container);
+
+  if (blocks.length !== data.blockCoordinates.length) {
+    alert('У розміщенні відсутні деякі блоки.')
+  }
+
+  renderBlocks(data, containerElement);
   Render.renderFullness(data.fullness);
 }
 
 
-main(blocksData);
-
-window.addEventListener('resize', debounce(() => {
-  main(blocksData);
-}, 150));
-
-
+main();
+window.addEventListener('resize', debounce(handleResize, DEBOUNCE_DELAY));
