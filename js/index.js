@@ -17,6 +17,10 @@ function main(blocks) {
 
   const data = efficientPlacement(blocks, container);
 
+  if (blocks.length !== data.blockCoordinates.length) {
+    alert('У розміщенні відсутні деякі блоки.')
+  }
+
   data.blockCoordinates.forEach((coord) => {
     const width = coord.right - coord.left;
     const height = coord.bottom - coord.top
@@ -40,6 +44,6 @@ main(blocksData);
 
 window.addEventListener('resize', debounce(() => {
   main(blocksData);
-}, 50));
+}, 150));
 
 
