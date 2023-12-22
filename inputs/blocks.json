@@ -1,8 +1,12 @@
 [
-    { "width": 90, "height": 90, "initialOrder": 1 },
-    { "width": 60, "height": 115, "initialOrder": 2 },
-    { "width": 90, "height": 90, "initialOrder": 3 },
-    { "width": 60, "height": 115, "initialOrder": 4 },
-    { "width": 90, "height": 90, "initialOrder": 5 },
-    { "width": 60, "height": 115, "initialOrder": 6 }
+    {"width": 90, "height": 90},
+    {"width": 60, "height": 115},
+    {"width": 90, "height": 90},
+    {"width": 42, "height": 79},
+    {"width": 170, "height": 55},
+    {"width": 88, "height": 28},
+    {"width": 56, "height": 72},
+    {"width": 33, "height": 104},
+    {"width": 195, "height": 61},
+    {"width": 72, "height": 10}
 ]
